@@ -1,0 +1,42 @@
+{
+  "name": "travis-test",
+  "version": "1.0.0",
+  "description": "travis test",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --open",
+    "build": "webpack",
+    "eslint": "eslint -c .eslintrc.js src/",
+    "test": "mocha --require babel-register",
+    "karma": "karma start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kishu/travis-test.git"
+  },
+  "author": "Taihoon Kim <kishu@navercorp.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kishu/travis-test/issues"
+  },
+  "homepage": "https://github.com/kishu/travis-test#readme",
+  "devDependencies": {
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-preset-env": "^1.4.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-register": "^6.24.1",
+    "chai": "^3.5.0",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb-base": "^11.1.3",
+    "eslint-plugin-import": "^2.2.0",
+    "karma": "^1.6.0",
+    "karma-babel-preprocessor": "^6.0.1",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-mocha": "^1.3.0",
+    "karma-phantomjs-launcher": "^1.0.4",
+    "karma-webpack": "^2.0.3",
+    "mocha": "^3.2.0",
+    "webpack": "^2.4.1"
+  }
+}
