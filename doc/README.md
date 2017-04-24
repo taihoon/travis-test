@@ -64,6 +64,7 @@ indent_size = 2
 
 # .gitignore 생성
 
+[.gitignore.io](https://www.gitignore.io/)
 ![gitignore.io](img/gitignore-io.png)
 
 ---
@@ -79,9 +80,10 @@ $ ./node_modules/.bin/eslint --init
 
 ---
 
-# eslintrc.js
+# .eslintrc.js
 
 ``` js
+[...]
 "rules": {
   "no-tabs": "off",
   "indent": ["error", "tab"],
@@ -103,12 +105,12 @@ package.json
 
 ``` bash
 $ npm install webpack webpack-dev-server --save-dev
-$ npm install babel-core babel-register babel-preset-env --save-dev
+$ npm install babel-core babel-loader babel-register babel-preset-env --save-dev
 ```
 
 ---
 
-# babel.rc
+# .babelrc
 
 ``` json
 {
@@ -121,7 +123,7 @@ $ npm install babel-core babel-register babel-preset-env --save-dev
 
 # webpack.config.js
 
-```
+```js
 const path = require("path");
 
 module.exports = {
@@ -130,11 +132,6 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
     filename: "bundle.js"
   },
-```
-
----
-
-``` js
   module: {
     rules: [
       {
@@ -158,7 +155,7 @@ package.json
 
 ``` json
 "scripts": {
-  "start": "webpack-dev-server",
+  "start": "webpack-dev-server --open",
   "build": "webpack"
 }
 ```
@@ -202,6 +199,24 @@ console.log(todo.getTitle());
 ```
 
 ---
+# index.html
+```html
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Travis Test</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<script src="dist/bundle.js"></script>
+</body>
+</html>
+```
+---
 
 # build
 
@@ -209,8 +224,7 @@ console.log(todo.getTitle());
 ``` bash
 $ npm start 
 ```
-
-checkout browser
+명령어를 실행하면 브라우저가 실행되면서 console창에 `New todo`라는 로그가 찍힌다.
 
 ## build dist files
 ```
@@ -273,10 +287,18 @@ npm test
 # karma 설정
 
 ``` bash
-$ npm install karma karma-webpack-preprocessor --save-dev
+$ npm install karma karma-webpack karma-babel-preprocessor --save-dev
 $ npm install karma-phantomjs-launcher karma-chrome-launcher --save-dev
 
 $ ./node_modules/.bin/karma init
+```
+
+package.json
+```json
+"scripts": {
+  [...]
+  "karma": "karma start"
+},
 ```
 
 ---
@@ -291,12 +313,12 @@ $ ./node_modules/.bin/karma init
 const webpack = require("./webpack.config");
 
 module.exports = function(config) {
-  ..
+  [...]
   preprocessors: {
     "test/**/*.spec.js": ["webpack"],
   },
   webpack: webpack,
-  ..
+  [...]
 };
 ```
 
@@ -305,7 +327,7 @@ module.exports = function(config) {
 # karma 실행
 
 ``` bash
-$ npm run karam
+$ npm run karma
 ```
 
 ![karma](img/karma.png)
@@ -323,12 +345,13 @@ install:
 script: node_modules/karma/bin/karma start --single-run --browsers PhantomJS
 ```
 
-여기까지 PUSH
+여기까지 완료한 다음, 개인 repository에 PUSH
 
 ---
 
 # travis
 
+[travis-ci-getting_started](https://travis-ci.org/getting_started)
 travis 사이트 account에서 리파지토리 활성화
 코드 수정 후 다시 push 하면 travis가 동작
 
